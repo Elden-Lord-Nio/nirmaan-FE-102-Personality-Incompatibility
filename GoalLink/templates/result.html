@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalLink - {{ mbti }} Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .result-container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 3rem;
+            animation: slideUp 0.8s ease-out forwards;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .result-text h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #6366f1, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .result-text h2 {
+            font-size: 1.8rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .result-text p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .traits-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .traits-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #e2e8f0;
+            font-size: 1.1rem;
+        }
+        
+        .check-icon {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .result-image-wrapper {
+            position: relative;
+        }
+
+        .result-image {
+            width: 100%;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .glow-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110%;
+            height: 110%;
+            background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        @media (max-width: 900px) {
+            .result-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .traits-list li {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-background"></div>
+    <nav class="navbar glass-panel">
+        <div class="logo">GoalLink</div>
+        <div class="nav-links">
+            <a href="/dashboard" class="btn-outline">← Back to Dashboard</a>
+        </div>
+    </nav>
+
+    <main class="result-container glass-panel">
+        <div class="result-text">
+            <h2>Your Personality Type is</h2>
+            <h1>{{ mbti }}</h1>
+            
+            <p>
+                As an <strong>{{ mbti }}</strong>, you bring a unique and specialized approach to hackathons. 
+                Our algorithm has matched you with teammates because of how your distinct cognitive functions compliment the skills of others in high-pressure environments.
+            </p>
+            
+            <ul class="traits-list">
+                <li><span class="check-icon">✓</span> Excellent Problem Solving</li>
+                <li><span class="check-icon">✓</span> Deep Focus and Concentration</li>
+                <li><span class="check-icon">✓</span> Strategic Project Mapping</li>
+                <li><span class="check-icon">✓</span> Innovative Systems Thinking</li>
+            </ul>
+            
+            <div style="margin-top: 3rem;">
+                <a href="/personalities" class="btn-primary" style="margin-right: 1rem;">View All Types</a>
+            </div>
+        </div>
+        
+        <div class="result-image-wrapper">
+            <div class="glow-effect"></div>
+            <!-- Dynamic gender and MBTI specific image -->
+            <img src="{{ url_for('static', filename='images/' ~ mbti|lower ~ '_' ~ gender ~ '.png') }}" alt="{{ mbti }} Hacker Avatar" class="result-image">
+        </div>
+    </main>
+</body>
+</html>

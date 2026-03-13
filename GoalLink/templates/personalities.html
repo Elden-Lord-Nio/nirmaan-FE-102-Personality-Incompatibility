@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalLink - The 16 Personalities</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .personalities-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .header-section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #6366f1, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-section p {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .type-group {
+            margin-bottom: 4rem;
+        }
+
+        .type-group h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            padding-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .group-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .personality-card {
+            padding: 2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .personality-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .p-code {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .p-title {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .p-desc {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .p-traits {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .trait {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 99px;
+            color: #cbd5e1;
+        }
+
+        /* Analyst Colors */
+        .group-analysts .p-code { color: #a855f7; }
+        .group-analysts h2 { border-bottom-color: rgba(168, 85, 247, 0.3); }
+
+        /* Diplomat Colors */
+        .group-diplomats .p-code { color: #10b981; }
+        .group-diplomats h2 { border-bottom-color: rgba(16, 185, 129, 0.3); }
+
+        /* Sentinel Colors */
+        .group-sentinels .p-code { color: #3b82f6; }
+        .group-sentinels h2 { border-bottom-color: rgba(59, 130, 246, 0.3); }
+
+        /* Explorer Colors */
+        .group-explorers .p-code { color: #f59e0b; }
+        .group-explorers h2 { border-bottom-color: rgba(245, 158, 11, 0.3); }
+
+    </style>
+</head>
+<body>
+    <div class="glass-background"></div>
+    <nav class="navbar glass-panel">
+        <div class="logo">GoalLink</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/personalities" class="active">About MBTI</a>
+            <a href="/login" class="btn-outline">Login</a>
+            <a href="/signup" class="btn-primary">Sign Up</a>
+        </div>
+    </nav>
+
+    <main class="personalities-container">
+        <div class="header-section glass-panel" style="padding: 3rem;">
+            <h1>The 16 Personalities</h1>
+            <p>Understanding your Myers-Briggs Type Indicator (MBTI) is the first step to forming the ultimate hackathon team. GoalLink pairs highly complementary working styles so your team balances vision with execution, and logic with empathy.</p>
+        </div>
+
+        <!-- Analysts -->
+        <section class="type-group group-analysts">
+            <h2>Analysts (Intuitive & Thinking)</h2>
+            <div class="group-grid">
+                <div class="personality-card">
+                    <div class="p-code">INTJ</div>
+                    <div class="p-title">The Architect</div>
+                    <p class="p-desc">Imaginative and strategic thinkers, with a plan for everything. Excellent at seeing the big picture systems and creating the initial hackathon vision.</p>
+                    <div class="p-traits"><span class="trait">Strategic</span><span class="trait">Independent</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">INTP</div>
+                    <div class="p-title">The Logician</div>
+                    <p class="p-desc">Innovative inventors with an unquenchable thirst for knowledge. Great for solving complex algorithmic bottlenecks in your project.</p>
+                    <div class="p-traits"><span class="trait">Analytical</span><span class="trait">Curious</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">ENTJ</div>
+                    <div class="p-title">The Commander</div>
+                    <p class="p-desc">Bold, imaginative, and strong-willed leaders. The perfect people to manage project timelines, pitch the final product, and delegate tasks.</p>
+                    <div class="p-traits"><span class="trait">Driven</span><span class="trait">Organized</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">ENTP</div>
+                    <div class="p-title">The Debater</div>
+                    <p class="p-desc">Smart and curious thinkers who cannot resist an intellectual challenge. Incredible brainstormers who will pivot and adapt your idea on the fly.</p>
+                    <div class="p-traits"><span class="trait">Creative</span><span class="trait">Energetic</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diplomats -->
+        <section class="type-group group-diplomats">
+            <h2>Diplomats (Intuitive & Feeling)</h2>
+            <div class="group-grid">
+                <div class="personality-card">
+                    <div class="p-code">INFJ</div>
+                    <div class="p-title">The Advocate</div>
+                    <p class="p-desc">Quiet and mystical, yet very inspiring and tireless idealists. They ensure the product truly helps people and are heavily focused on UI/UX empathy.</p>
+                    <div class="p-traits"><span class="trait">Insightful</span><span class="trait">Passionate</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">INFP</div>
+                    <div class="p-title">The Mediator</div>
+                    <p class="p-desc">Poetic, kind and altruistic people, always eager to help a good cause. They build inclusive team cultures and write deeply impactful pitch decks.</p>
+                    <div class="p-traits"><span class="trait">Empathetic</span><span class="trait">Creative</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">ENFJ</div>
+                    <div class="p-title">The Protagonist</div>
+                    <p class="p-desc">Charismatic and inspiring leaders, able to mesmerize their listeners. The ultimate hype-person to present the project to hackathon judges.</p>
+                    <div class="p-traits"><span class="trait">Charismatic</span><span class="trait">Reliable</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">ENFP</div>
+                    <div class="p-title">The Campaigner</div>
+                    <p class="p-desc">Enthusiastic, creative and sociable free spirits. They network effectively and think outside the box to bypass technical roadblocks.</p>
+                    <div class="p-traits"><span class="trait">Enthusiastic</span><span class="trait">Spontaneous</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sentinels -->
+        <section class="type-group group-sentinels">
+            <h2>Sentinels (Observant & Judging)</h2>
+            <div class="group-grid">
+                <div class="personality-card">
+                    <div class="p-code">ISTJ</div>
+                    <div class="p-title">The Logistician</div>
+                    <p class="p-desc">Practical and fact-minded individuals, whose reliability cannot be doubted. They will write the tests, fix the bugs, and make sure the demo actually works.</p>
+                    <div class="p-traits"><span class="trait">Responsible</span><span class="trait">Detail-Oriented</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">ISFJ</div>
+                    <div class="p-title">The Defender</div>
+                    <p class="p-desc">Very dedicated and warm protectors, always ready to defend their loved ones. They keep team morale high when the 3 AM hackathon crash hits.</p>
+                    <div class="p-traits"><span class="trait">Supportive</span><span class="trait">Practical</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">ESTJ</div>
+                    <div class="p-title">The Executive</div>
+                    <p class="p-desc">Excellent administrators, unsurpassed at managing things or people. They will enforce Git workflows, merge branches, and keep scope creep strictly in check.</p>
+                    <div class="p-traits"><span class="trait">Organized</span><span class="trait">Direct</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">ESFJ</div>
+                    <div class="p-title">The Consul</div>
+                    <p class="p-desc">Extraordinarily caring, social and popular people. Highly skilled at bringing people together in cross-functional collaboration efforts.</p>
+                    <div class="p-traits"><span class="trait">Collaborative</span><span class="trait">Loyal</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Explorers -->
+        <section class="type-group group-explorers">
+            <h2>Explorers (Observant & Prospecting)</h2>
+            <div class="group-grid">
+                <div class="personality-card">
+                    <div class="p-code">ISTP</div>
+                    <div class="p-title">The Virtuoso</div>
+                    <p class="p-desc">Bold and practical experimenters, masters of all kinds of tools. Unmatched mechanics at connecting APIs, scraping data, and hacking components together.</p>
+                    <div class="p-traits"><span class="trait">Logical</span><span class="trait">Spontaneous</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">ISFP</div>
+                    <div class="p-title">The Adventurer</div>
+                    <p class="p-desc">Flexible and charming artists, always ready to explore and experience something new. The visual geniuses who will make your frontend look beautiful fast.</p>
+                    <div class="p-traits"><span class="trait">Artistic</span><span class="trait">Flexible</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">ESTP</div>
+                    <div class="p-title">The Entrepreneur</div>
+                    <p class="p-desc">Smart, energetic and very perceptive people. They thrive on the edge and excel in high-pressure crunch-time situations right before the submission deadline.</p>
+                    <div class="p-traits"><span class="trait">Bold</span><span class="trait">Perceptive</span></div>
+                </div>
+                <div class="personality-card">
+                    <div class="p-code">ESFP</div>
+                    <div class="p-title">The Entertainer</div>
+                    <p class="p-desc">Spontaneous, energetic and enthusiastic people. They ensure the hacker environment stays vibrant and fun throughout the grueling development lifecycle.</p>
+                    <div class="p-traits"><span class="trait">Energetic</span><span class="trait">Observant</span></div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+</body>
+</html>

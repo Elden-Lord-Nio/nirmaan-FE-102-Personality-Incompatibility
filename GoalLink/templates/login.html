@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalLink - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="glass-background"></div>
+    <nav class="navbar glass-panel">
+        <div class="logo">GoalLink</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/personalities">About MBTI</a>
+            <a href="/signup" class="btn-primary">Sign Up</a>
+        </div>
+    </nav>
+    <main class="hero" style="justify-content: center;">
+        <div class="hero-content glass-panel" style="max-width: 450px; text-align: center; margin: 0 auto; animation: slideUp 0.5s ease-out forwards;">
+            <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Welcome Back 👋</h2>
+            <p style="margin-bottom: 2rem; color: #94a3b8;">Login to see your matches and connect.</p>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div style="background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #fca5a5; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <form action="/login" method="POST" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;">
+                
+                <div>
+                    <label style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.3rem; display: block;">Email Address</label>
+                    <input type="email" name="email" placeholder="coder@example.com" required style="width: 100%; padding: 1rem; border: 1px solid var(--glass-border); outline: none; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 1rem; color: white;">
+                </div>
+
+                <div>
+                    <label style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.3rem; display: block;">Password</label>
+                    <input type="password" name="password" placeholder="••••••••" required style="width: 100%; padding: 1rem; border: 1px solid var(--glass-border); outline: none; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 1rem; color: white;">
+                </div>
+                
+                <button type="submit" class="btn-primary" style="padding: 1rem; font-size: 1.1rem; margin-top: 1rem; width: 100%;">Login</button>
+            </form>
+            
+            <p style="margin-top: 2rem; font-size: 0.9rem; color: #94a3b8;">
+                Don't have an account? <a href="/signup" style="color: #818cf8; text-decoration: none; font-weight: 600;">Sign up</a>
+            </p>
+        </div>
+    </main>
+</body>
+</html>

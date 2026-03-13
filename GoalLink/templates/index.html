@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalLink - Find Your Perfect Hackathon Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body id="home">
+    <div class="glass-background"></div>
+    <nav class="navbar glass-panel">
+        <div class="logo">GoalLink</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <!-- Link About directly to personalities -->
+            <a href="/personalities">About MBTI</a>
+            
+            {% if 'username' in session %}
+                <a href="/dashboard">Dashboard</a> 
+                <a href="/logout" class="btn-outline">Logout</a>
+            {% else %}
+                <a href="/login" class="btn-outline">Login</a>
+                <a href="/signup" class="btn-primary">Sign Up</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="hero-content glass-panel">
+            <h1>Connect. Collaborate. <br><span class="gradient-text">Create.</span></h1>
+            <p>The personality-based student networking platform. Discover teammates who complement your MBTI type, share your passions, and align with your project goals.</p>
+            <div class="cta-buttons">
+                <a href="/test" class="btn-primary cta-btn">Take Personality Test</a>
+                <a href="/personalities" class="btn-secondary cta-btn">Learn More</a>
+            </div>
+        </div>
+        
+        <div class="hero-visual">
+            <div class="floating-card glass-panel card-1">
+                <h3>Match Found! 🚀</h3>
+                <p>Compatibility: 94%</p>
+                <div class="tags">
+                    <span class="tag mbti">INTJ + ENTP</span>
+                    <span class="tag interest">AI / ML</span>
+                </div>
+            </div>
+            
+            <div class="floating-card glass-panel card-2">
+                <h3>Shared Project</h3>
+                <p>Goal: Hackathon Participation</p>
+                <div class="progress-bar"><div class="progress" style="width: 80%"></div></div>
+            </div>
+
+            <!-- More floating cards for the requested "more floating" effect -->
+            <div class="floating-card glass-panel card-3">
+                <h3>New Skill</h3>
+                <p>Looking to learn: React.js</p>
+                <div class="tags">
+                    <span class="tag interest">Frontend</span>
+                </div>
+            </div>
+
+            <div class="floating-card glass-panel card-4" style="animation: float 5s ease-in-out infinite;">
+                <h3>Team Chemistry</h3>
+                <p>Complementary working styles detected.</p>
+                <div class="progress-bar"><div class="progress" style="width: 100%; background: linear-gradient(90deg, #10b981, #3b82f6);"></div></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalLink - Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="glass-background"></div>
+    <nav class="navbar glass-panel">
+        <div class="logo">GoalLink</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/login" class="btn-outline">Login</a>
+        </div>
+    </nav>
+    <main class="hero" style="justify-content: center;">
+        <div class="hero-content glass-panel" style="max-width: 500px; text-align: center; margin: 0 auto; animation: slideUp 0.5s ease-out forwards;">
+            <h2 style="font-size: 2rem; margin-bottom: 0.5rem;">Create an Account 🚀</h2>
+            <p style="margin-bottom: 2rem; color: #94a3b8;">Join GoalLink and find your team.</p>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div style="background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #fca5a5; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    {{ message }}
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <form action="/signup" method="POST" style="display: flex; flex-direction: column; gap: 1.2rem; text-align: left;">
+                <div>
+                    <label style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.3rem; display: block;">Username</label>
+                    <input type="text" name="username" placeholder="Hacker123" required style="width: 100%; padding: 1rem; border: 1px solid var(--glass-border); outline: none; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 1rem; color: white;">
+                </div>
+                
+                <div>
+                    <label style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.3rem; display: block;">Email Address</label>
+                    <input type="email" name="email" placeholder="coder@example.com" required style="width: 100%; padding: 1rem; border: 1px solid var(--glass-border); outline: none; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 1rem; color: white;">
+                </div>
+
+                <div>
+                    <label style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.3rem; display: block;">Gender</label>
+                    <select name="gender" required style="width: 100%; padding: 1rem; border: 1px solid var(--glass-border); outline: none; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 1rem; color: white; -webkit-appearance: none; appearance: none;">
+                        <option value="male" style="color: black;">Male</option>
+                        <option value="female" style="color: black;">Female</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.3rem; display: block;">Password</label>
+                    <input type="password" name="password" placeholder="••••••••" required style="width: 100%; padding: 1rem; border: 1px solid var(--glass-border); outline: none; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 1rem; color: white;">
+                </div>
+
+                <div>
+                    <label style="color: #cbd5e1; font-size: 0.9rem; margin-bottom: 0.3rem; display: block;">Top Interests (Comma separated)</label>
+                    <input type="text" name="interests" placeholder="e.g. AI, React, FinTech, UI/UX" required style="width: 100%; padding: 1rem; border: 1px solid var(--glass-border); outline: none; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 1rem; color: white;">
+                    <small style="color: #64748b; font-size: 0.8rem; display: block; margin-top: 0.4rem;">List maximum 5 passions or tech stacks.</small>
+                </div>
+                
+                <button type="submit" class="btn-primary" style="padding: 1rem; font-size: 1.1rem; margin-top: 1rem; width: 100%;">Create Account</button>
+            </form>
+            
+            <p style="margin-top: 2rem; font-size: 0.9rem; color: #94a3b8;">
+                Already have an account? <a href="/login" style="color: #818cf8; text-decoration: none; font-weight: 600;">Login</a>
+            </p>
+        </div>
+    </main>
+</body>
+</html>

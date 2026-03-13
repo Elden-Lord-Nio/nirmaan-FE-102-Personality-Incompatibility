@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalLink - Personality Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
+</head>
+<body>
+    <div class="glass-background"></div>
+    <nav class="navbar glass-panel">
+        <div class="logo">GoalLink</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="#" class="active">Test</a>
+            <a href="/login" class="btn-outline">Login</a>
+        </div>
+    </nav>
+
+    <main class="test-container glass-panel">
+        <div class="test-header">
+            <h2>Personality & Collaboration Profiler</h2>
+            <p>Answer 60 questions to discover your working style and find the perfect teammates.</p>
+            
+            <div class="progress-container">
+                <div class="test-progress-bar">
+                    <div class="test-progress" id="progressBar"></div>
+                </div>
+                <span class="progress-text" id="progressText">Question 1 of 60</span>
+            </div>
+        </div>
+
+        <form id="personalityTest" action="/test" method="POST">
+            <div class="questions-wrapper" id="questionsWrapper">
+                <!-- Questions will be injected here via JavaScript -->
+            </div>
+
+            <div class="test-navigation">
+                <button type="button" id="prevBtn" class="btn-secondary" disabled>Previous</button>
+                <button type="button" id="nextBtn" class="btn-primary">Next</button>
+                <button type="submit" id="submitBtn" class="btn-primary btn-submit" style="display: none;">See Results</button>
+            </div>
+        </form>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+</body>
+</html>

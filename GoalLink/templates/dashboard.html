@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalLink - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="glass-background"></div>
+    <nav class="navbar glass-panel">
+        <div class="logo">GoalLink</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/test">Retake Test</a>
+            <div class="user-profile">
+                <div class="avatar">{{ user.username[0] }}</div>
+                <span>{{ user.username }}</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+        <!-- Sidebar / User Stats -->
+        <aside class="dashboard-sidebar glass-panel">
+            <div class="profile-header">
+                <div class="avatar large">{{ user.username[0] | upper }}</div>
+                <h2>{{ user.username }}</h2>
+                
+                {% if user.mbti != 'Pending' %}
+                    <a href="/result/{{ user.mbti }}" style="text-decoration: none;">
+                        <div class="mbti-badge" style="cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            {{ user.mbti }} <small style="font-size: 0.6rem; opacity: 0.7;">View Details ➔</small>
+                        </div>
+                    </a>
+                {% else %}
+                    <div class="mbti-badge">{{ user.mbti }}</div>
+                {% endif %}
+            </div>
+            
+            <div class="stats-section">
+                <h3>Your Interests</h3>
+                <div class="tags">
+                    {% for interest in user.interests %}
+                        <span class="tag interest">{{ interest }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="stats-section">
+                <h3>Working Style</h3>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>Extrovert</span><span>Introvert</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 30%"></div></div>
+                </div>
+                <div class="stat-bar-container">
+                    <div class="stat-label"><span>Intuitive</span><span>Observant</span></div>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 75%; background: linear-gradient(90deg, #10b981, #3b82f6)"></div></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content / Matches -->
+        <section class="matches-section">
+            <div class="section-header">
+                <h2>Your Top Matches 🚀</h2>
+                <p>Based on your <strong>{{ user.mbti }}</strong> personality and goals.</p>
+            </div>
+
+            <div class="matches-grid">
+                {% for match in matches %}
+                <div class="match-card glass-panel">
+                    <div class="match-header">
+                        <div class="avatar">{{ match.username[0] }}</div>
+                        <div class="match-info">
+                            <h3>{{ match.username }}</h3>
+                            <span class="tag mbti small">{{ match.mbti }}</span>
+                        </div>
+                        <div class="compatibility-score">
+                            <span>{{ match.compatibility }}%</span>
+                            <small>Match</small>
+                        </div>
+                    </div>
+                    
+                    <div class="shared-interests">
+                        <h4>Shared Interests:</h4>
+                        <div class="tags">
+                            {% for interest in match.shared_interests %}
+                                <span class="tag interest small">{{ interest }}</span>
+                            {% else %}
+                                <span class="text-muted">None Yet</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary w-100">Connect</button>
+                </div>
+                {% else %}
+                <div class="no-matches glass-panel">
+                    <h3>No matches found yet.</h3>
+                    <p>Update your interests or take the test to find peers!</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>
